@@ -51,3 +51,22 @@ set shell = createobject("wscript.shell")
 shell.run "cmd /k netstat -nbf"
 
 end if
+
+if arg1 = "-mc" then
+
+set shell = createobject("wscript.shell")
+shell.run "cmd /c echo @echo off >> mac.bat", 0, True
+shell.run "cmd /c echo for /f %%a in ( ' arp -A ' ) do ( >> mac.bat", 0, True
+shell.run "cmd /c echo echo %%a >> mac.bat", 0, True
+shell.run "cmd /c echo ) >> mac.bat", 0, True
+shell.run "cmd /c echo pause > nul >> mac.bat", 0, True
+shell.run "cmd /c timeout /t 1 > nul", 0, True
+shell.run "cmd /k mac.bat"
+shell.run "cmd /c timeout /t 1 > nul", 0, True
+shell.run "cmd /c del mac.bat", 0, True
+
+end if
+
+if arg1 = "rt" then 
+
+set shell = ""

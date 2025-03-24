@@ -70,3 +70,5 @@ end if
 if arg1 = "rt" then 
 
 set shell = ""
+
+end if
